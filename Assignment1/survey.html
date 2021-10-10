@@ -2,88 +2,60 @@
     <head>
         <title>Survey</title>
         <link rel="stylesheet" href="\styles\style1.css">
-        <script src="surveyjs.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+
     </head>
     <body>
-        <style>
-        var counterText = 0;
+        <script>
+            $(document).ready(function () {
+            $('button').click(function () {
+                $('#todo').append("<ul>" + $("input[name=task]").val() + " <a href='#' class='close' aria-hidden='true'>&times;</a></ul>");
+            });
+            $("body").on('click', '#todo a', function () {
+                $(this).closest("ul").remove();
+            });
+            });
+            $(document).ready(function () {
+            $('button').click(function () {
+                $('#options').append("<li>" + $("input[name=task]").val() + " <a href='#' class='close' aria-hidden='true'>&times;</a></ul>");
+            });
+            $("body").on('click', '#options a', function () {
+                $(this).closest("li").remove();
+            });
+            });
+        </script>
+        <div class="form-group">
+            <h1 style = "background-color: rgba(0, 136, 169, 1); color: white">Questionnaire<small></small></h1> <br>
+            <h2 style="background-color: rgba(0, 136, 169, 1); color: white">Add your questions</h2> <br>
+            <form role="form">
+              <input size = "100" type="text" class="form-control" style = " color: white" placeholder="Question" name="task">
+            </form>
+            <input list="select" name="select" placeholder="Option Type" style = " color: white">
+            <datalist class="form-control" id="select">    
+                <option value="Images"/>
+                <option value="Text"/>
+            </datalist>
+            <button type="button" class="button" style = "background-color: rgba(0, 136, 169, 1); color: white">Add</button>
+        </div>
+        <!--Adding Options-->
+            <form role="form" class="form-control1">
+                <input type="text" style = " color: white" placeholder="Add your option" name="task">
+            </form>
+            <button type="button" class="button1" style = "background-color: rgba(0, 136, 169, 1); color: white">Add</button>
+            <form role="form" class="form-control1">
+                <input type="text" style = " color: white" placeholder="Add your option" name="task">
+            </form>
+            <button type="button" class="button1" style = "background-color: rgba(0, 136, 169, 1); color: white">Add</button>
+            <form role="form" class="form-control1">
+                <input type="text" style = " color: white" placeholder="Add your option" name="task">
+            </form>
+            <button type="button" class="button1" style = "background-color: rgba(0, 136, 169, 1); color: white">Add</button>
+            <form role="form" class="form-control1">
+                <input type="text" style = " color: white" placeholder="Add your option" name="task">
+            </form>
+            <button type="button" class="button1" style = "background-color: rgba(0, 136, 169, 1); color: white">Add</button>
 
-        var counterRadioButton = 0;
-        
-        var counterCheckBox = 0;
-        
-        var counterTextArea = 0;
-        
-        var counter = 0;
-        function addAllInputs(divName, inputType){
-        
-             var newdiv = document.createElement('div');
-        
-             switch(inputType) {
-        
-                  case 'text':
-        
-                       newdiv.innerHTML = "Entry " +(counterText+1)+" <input type='text' name='myInputs[]'><br>";
-        
-                       counterText++;
-        
-                       break;
-        
-                  case 'radio':newdiv.innerHTML = "Entry " +(counterRadioButton+1)+" <input type='radio' name='myRadioButtons[]'>";
-        
-                  counterRadioButton++;
-        
-                  break;
-        
-             case 'checkbox':
-        
-                  newdiv.innerHTML = "Entry "+(counterCheckBox+1)+" <input type='checkbox' name='myCheckBoxes[]'>";
-        
-                  counterCheckBox++;
-        
-                  break;
-        
-             case 'textarea':
-        
-                newdiv.innerHTML = "Entry "+(counterTextArea+1)+" <textarea name='myTextAreas[]'>type here...</textarea>";
-        
-                    counterTextArea++;
-        
-                    break;
-               }
-        
-          document.getElementById(divName).appendChild(newdiv);
-        }
-        function addSec(){
-         var newdiv = document.createElement('div');
-        
-         var div = document.getElementById('dynamicInput').innerHTML;
-         newdiv.innerHTML = document.getElementById('dynamicInput').innerHTML;
-         document.body.appendChild(newdiv);
-        
-        }
-    </style>
-        <form method="POST">
-            <div id="dynamicInput">
-            <label for="fieldName">Name this field</label>
-            <input type="text" name="fieldName">
-            <br><br>
-            
-            <SELECT name="element">
-            <OPTION value="text">Textbox</OPTION>
-            <OPTION value="radio">Radio</OPTION>
-            <OPTION value= "textarea">Text Area</option>
-            <OPTION value = "checkbox">Check Box</option>
-            </SELECT>
-            
-            <input type="button" value="Add an option" onClick="addAllInputs('dynamicInput', document.forms[0].element.value);">
-            </div>
-            
-            
-            <br><br><br>
-            
-            <input type = "button" value="Add another field" onClick = "addSec();">
-            <br><br>
-        </form>
+            <ul class="list-unstyled" id="todo" style = "background-color: rgba(0, 136, 169, 1);"></ul>
+            <li class="list-styles" id="options"></li>
     </body>
 </html>
